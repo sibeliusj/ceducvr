@@ -30,8 +30,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files — NUNCA commitar (contêm secrets rotacionados na Fase 0)
+.env
+.env.*
+!.env.example
+
+# dumps do banco (dados pessoais — LGPD), mantidos fora do repo
+*.sql.dump
+dump_*.sql
+schema_full.sql
 
 # vercel
 .vercel

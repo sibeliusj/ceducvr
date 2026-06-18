@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.cvr.org.br" }],
+      "destination": "https://cvr.org.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "(www\\.)?ceducvr\\.org\\.br" }],
+      "destination": "https://cvr.org.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/blog-view.php",
+      "has": [{ "type": "query", "key": "slug", "value": "(?<slug>.*)" }],
+      "destination": "/blog/:slug",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/wp-content/uploads/:path*",
+      "destination": "/images/wp-imported/:path*"
+    }
+  ]
+}
