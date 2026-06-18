@@ -42,6 +42,12 @@ export default function RootLayout({
         <link rel="stylesheet" href="/css/owl.carousel.css" />
         <link rel="stylesheet" href="/css/animate.min.css" />
         <link rel="stylesheet" href="/css/splitting.css" />
+        {/* CSS específicos de páginas (carregados globalmente; afetam só suas
+            próprias classes — preserva paridade sem complicar o App Router) */}
+        <link rel="stylesheet" href="/css/seja-aprendiz.css" />
+        <link rel="stylesheet" href="/css/contrate-aprendiz-form.css" />
+        <link rel="stylesheet" href="/css/contact-form-styles.css" />
+        <link rel="stylesheet" href="/css/como-ajudar.css" />
       </head>
       <body>
         {children}

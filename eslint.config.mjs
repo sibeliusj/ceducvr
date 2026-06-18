@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // JS de terceiros do template (jQuery + plugins) — não é nosso código.
+    "public/**",
   ]),
 ]);
 

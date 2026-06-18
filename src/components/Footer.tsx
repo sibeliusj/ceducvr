@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /**
  * Rodapé — markup idêntico ao footer.php (social + copyright + scroll-to-top).
  */
@@ -36,7 +38,7 @@ export default function Footer() {
         {/* Footer Text */}
         <div className="footer-text">
           <div className="footer-copy">
-            <a href="/">© CEDUCVR 2025</a>.
+            <Link href="/">© CEDUCVR 2025</Link>.
           </div>
         </div>
       </div>

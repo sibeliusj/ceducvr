@@ -1,0 +1,525 @@
+/* Fontes próprias desta página (a página original carregava via <head>).
+   @import no topo do arquivo para o navegador buscá-las junto com o CSS. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+/* ============================================================
+   CSS específico da página /como-ajudar
+   Extraído do <style> embutido em como_ajudar.php (página standalone).
+
+   IMPORTANTE: a página original era standalone com body/nav/footer
+   próprios. Aqui ela usa a casca comum (Header/Footer do layout public),
+   então TODAS as regras estão escopadas sob `.como-ajudar` para não
+   vazar para o resto do site (que usa o template Rhythm/Bootstrap).
+   As regras de nav, footer e link-to-top da página original foram
+   descartadas — o layout já fornece esses elementos.
+   ============================================================ */
+
+.como-ajudar {
+  --ink:        #0b1a2e;
+  --ink-soft:   #1b2a42;
+  --paper:      #f5efe3;
+  --paper-2:    #ece4d2;
+  --cream:      #faf6ec;
+  --brand:      #2058ab;
+  --brand-deep: #133b7a;
+  --amber:      #d97a1f;
+  --amber-soft: #f2b267;
+  --clay:       #b94a2a;
+  --moss:       #3a5a3b;
+  --line:       rgba(11, 26, 46, 0.14);
+  --line-strong:rgba(11, 26, 46, 0.32);
+
+  font-family: 'Manrope', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(217,122,31,.08), transparent 40%),
+    radial-gradient(circle at 88% 32%, rgba(32,88,171,.07), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.1 0 0 0 0 0.18 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.como-ajudar *{box-sizing:border-box;margin:0;padding:0}
+
+.como-ajudar h1,
+.como-ajudar h2,
+.como-ajudar h3,
+.como-ajudar h4,
+.como-ajudar h5{font-family:'Fraunces', serif;font-weight:600;letter-spacing:-0.01em;color:var(--ink)}
+.como-ajudar .serif{font-family:'Fraunces', serif}
+.como-ajudar .mono{font-family:'JetBrains Mono', monospace;letter-spacing:0}
+
+.como-ajudar a{color:inherit;text-decoration:none}
+.como-ajudar img{max-width:100%;display:block}
+
+.como-ajudar .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+@media (max-width:720px){.como-ajudar .wrap{padding:0 22px}}
+
+/* ============ HERO ============ */
+.como-ajudar .hero-banner{
+  position:relative;
+  min-height:640px;
+  background-image:
+    linear-gradient(180deg, rgba(11,26,46,.55) 0%, rgba(11,26,46,.35) 45%, rgba(11,26,46,.85) 100%),
+    url('/images/capa_como_doar.jpeg');
+  background-size:cover;
+  background-position:center 30%;
+  background-repeat:no-repeat;
+  color:var(--cream);
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+.como-ajudar .hero-banner::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(217,122,31,.22), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;pointer-events:none;
+}
+.como-ajudar .hero-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:1280px;margin:0 auto;
+  padding:120px 40px 80px;
+  display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:end;
+}
+.como-ajudar .eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--amber-soft);margin-bottom:30px;
+}
+.como-ajudar .eyebrow::before{content:"";width:38px;height:1px;background:var(--amber-soft)}
+.como-ajudar .hero-banner h1{
+  font-size:clamp(48px, 6.4vw, 96px);
+  line-height:.98;
+  font-weight:400;
+  letter-spacing:-0.035em;
+  margin-bottom:24px;
+  color:var(--cream);
+  text-shadow:0 4px 30px rgba(0,0,0,.35);
+}
+.como-ajudar .hero-banner h1 em{
+  font-style:italic;font-weight:300;
+  color:var(--amber-soft);
+  font-family:'Fraunces',serif;
+}
+.como-ajudar .hero-banner h1 .u{
+  border-bottom:3px solid var(--amber);padding-bottom:4px;
+}
+.como-ajudar .hero-lead{
+  font-size:18px;line-height:1.6;color:rgba(250,246,236,.92);
+  max-width:620px;margin-bottom:40px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.como-ajudar .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.como-ajudar .hero-banner .btn-ghost{border-color:rgba(250,246,236,.6);color:var(--cream)}
+.como-ajudar .hero-banner .btn-ghost:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+
+.como-ajudar .hero-tagline{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:24px;line-height:1.3;color:var(--cream);
+  max-width:340px;
+  border-left:2px solid var(--amber);
+  padding-left:22px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.como-ajudar .hero-tagline .since{
+  display:block;
+  font-family:'JetBrains Mono',monospace;font-style:normal;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--amber-soft);margin-bottom:14px;font-weight:600;
+}
+
+.como-ajudar .hero-stats-band{
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
+}
+.como-ajudar .hero-stats-band-inner{
+  max-width:1280px;margin:0 auto;padding:48px 40px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:30px;
+}
+.como-ajudar .hero-stats-band .stat-num{
+  font-family:'Fraunces',serif;font-size:54px;font-weight:300;
+  line-height:1;letter-spacing:-0.03em;color:var(--ink);
+}
+.como-ajudar .hero-stats-band .stat-num sup{font-size:22px;color:var(--amber);font-weight:600;margin-left:2px}
+.como-ajudar .hero-stats-band .stat-label{font-size:12.5px;color:var(--ink-soft);margin-top:10px;letter-spacing:.04em;line-height:1.4}
+
+@media (max-width:960px){
+  .como-ajudar .hero-inner{grid-template-columns:1fr;gap:40px;padding:100px 22px 60px}
+  .como-ajudar .hero-banner{min-height:auto}
+  .como-ajudar .hero-stats-band-inner{grid-template-columns:repeat(2,1fr);padding:36px 22px;gap:24px}
+}
+.como-ajudar .btn-primary{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:18px 32px;border-radius:999px;
+  background:var(--ink);color:var(--cream);
+  font-weight:600;font-size:14px;letter-spacing:.02em;
+  transition:all .3s ease;
+}
+.como-ajudar .btn-primary:hover{background:var(--amber);transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(217,122,31,.45)}
+.como-ajudar .btn-ghost{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:18px 30px;border-radius:999px;
+  border:1.5px solid var(--ink);color:var(--ink);
+  font-weight:600;font-size:14px;letter-spacing:.02em;
+  transition:all .3s ease;background:transparent;
+}
+.como-ajudar .btn-ghost:hover{background:var(--ink);color:var(--cream)}
+
+.como-ajudar .marquee{
+  border-top:1px solid var(--line-strong);
+  border-bottom:1px solid var(--line-strong);
+  padding:22px 0;overflow:hidden;white-space:nowrap;
+  background:var(--cream);
+}
+.como-ajudar .marquee-track{
+  display:inline-flex;gap:60px;animation:ca-slide 40s linear infinite;
+  font-family:'Fraunces',serif;font-size:28px;font-weight:300;font-style:italic;
+  color:var(--ink);
+}
+.como-ajudar .marquee-track span{display:inline-flex;align-items:center;gap:60px}
+.como-ajudar .marquee-track span::after{content:"\2726";color:var(--amber);font-style:normal}
+@keyframes ca-slide{to{transform:translateX(-50%)}}
+
+.como-ajudar section{padding:120px 0}
+.como-ajudar .sec-head{display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:end;margin-bottom:72px}
+.como-ajudar .sec-num{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--clay);
+  letter-spacing:.15em;padding-top:8px;
+}
+.como-ajudar .sec-title{font-size:clamp(36px,4.5vw,64px);line-height:1;font-weight:400;letter-spacing:-0.025em;max-width:720px}
+.como-ajudar .sec-title em{font-style:italic;color:var(--amber);font-weight:300}
+.como-ajudar .sec-sub{font-size:16px;color:var(--ink-soft);max-width:540px;margin-top:20px;line-height:1.65}
+
+/* ============ COMO DOAR ============ */
+.como-ajudar .split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-strong);border:1px solid var(--line-strong)}
+.como-ajudar .split-card{
+  background:var(--paper);padding:56px 48px;
+  position:relative;transition:background .4s ease;
+}
+.como-ajudar .split-card:hover{background:var(--cream)}
+.como-ajudar .split-icon{
+  width:68px;height:68px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1.5px solid var(--ink);
+  font-size:26px;color:var(--ink);
+  margin-bottom:28px;
+  transition:all .35s ease;
+}
+.como-ajudar .split-card:hover .split-icon{background:var(--ink);color:var(--amber);transform:rotate(-8deg)}
+.como-ajudar .split-card h3{font-size:40px;font-weight:400;line-height:1.05;margin-bottom:18px;letter-spacing:-0.02em}
+.como-ajudar .split-card h3 em{font-style:italic;color:var(--clay)}
+.como-ajudar .split-card p{font-size:15.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:26px}
+.como-ajudar .split-card ul{list-style:none;margin:0 0 30px;padding:0}
+.como-ajudar .split-card ul li{
+  padding:10px 0;border-top:1px solid var(--line);
+  font-size:14px;display:flex;align-items:center;gap:12px;
+}
+.como-ajudar .split-card ul li::before{content:"\2192";color:var(--amber);font-weight:600}
+.como-ajudar .split-card ul li:last-child{border-bottom:1px solid var(--line)}
+
+@media (max-width:860px){ .como-ajudar .split{grid-template-columns:1fr} }
+
+/* ============ PIX ============ */
+.como-ajudar .pix-panel{
+  background:var(--ink);color:var(--cream);
+  border-radius:8px;padding:70px 60px;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:70px;align-items:center;
+  position:relative;overflow:hidden;
+  background-image:
+    radial-gradient(circle at 90% 20%, rgba(217,122,31,.25), transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(32,88,171,.2), transparent 50%);
+}
+.como-ajudar .pix-panel::before{
+  content:"PIX";position:absolute;
+  font-family:'Fraunces',serif;font-weight:800;
+  font-size:340px;letter-spacing:-0.05em;
+  color:rgba(250,246,236,.04);
+  top:-80px;right:-40px;line-height:1;
+  pointer-events:none;
+}
+.como-ajudar .pix-panel h3{color:var(--cream);font-size:44px;font-weight:400;line-height:1.05;margin-bottom:20px;letter-spacing:-0.02em}
+.como-ajudar .pix-panel h3 em{color:var(--amber-soft);font-style:italic}
+.como-ajudar .pix-panel p{color:rgba(250,246,236,.78);font-size:15.5px;line-height:1.7;margin-bottom:18px;max-width:470px}
+.como-ajudar .pix-key{
+  background:rgba(250,246,236,.08);
+  border:1px dashed rgba(250,246,236,.3);
+  padding:16px 22px;border-radius:6px;
+  font-family:'JetBrains Mono',monospace;font-size:15px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  margin-bottom:24px;
+}
+.como-ajudar .pix-key small{display:block;font-family:'Manrope',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:6px}
+.como-ajudar .pix-copy{
+  background:var(--amber);color:var(--ink);
+  border:none;padding:9px 16px;border-radius:999px;
+  font-weight:700;font-size:12px;cursor:pointer;
+  transition:background .25s ease;
+  font-family:'Manrope',sans-serif;
+}
+.como-ajudar .pix-copy:hover{background:var(--amber-soft)}
+.como-ajudar .pix-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.como-ajudar .pix-actions .btn-primary{background:var(--amber);color:var(--ink)}
+.como-ajudar .pix-actions .btn-primary:hover{background:var(--cream)}
+.como-ajudar .pix-actions .btn-ghost{border-color:rgba(250,246,236,.4);color:var(--cream)}
+.como-ajudar .pix-actions .btn-ghost:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+
+.como-ajudar .qr-holder{
+  background:var(--cream);border-radius:8px;padding:26px;
+  aspect-ratio:1;display:grid;place-items:center;position:relative;
+}
+.como-ajudar .qr-placeholder{
+  width:100%;aspect-ratio:1;
+  background-image:
+    linear-gradient(45deg,#0b1a2e 25%,transparent 25%),
+    linear-gradient(-45deg,#0b1a2e 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#0b1a2e 75%),
+    linear-gradient(-45deg,transparent 75%,#0b1a2e 75%);
+  background-size:16px 16px;
+  background-position:0 0, 0 8px, 8px -8px, -8px 0;
+  border-radius:4px;position:relative;
+}
+.como-ajudar .qr-placeholder::after{
+  content:"";position:absolute;inset:30%;
+  background:var(--cream);
+  display:grid;place-items:center;
+  border-radius:4px;
+}
+.como-ajudar .qr-holder-label{
+  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
+  background:var(--amber);color:var(--ink);
+  padding:6px 16px;border-radius:999px;
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  white-space:nowrap;
+}
+
+@media (max-width:860px){.como-ajudar .pix-panel{grid-template-columns:1fr;padding:44px 28px}.como-ajudar .pix-panel::before{font-size:200px}}
+
+/* ============ PROJETOS ============ */
+.como-ajudar .tabs-filter{
+  display:flex;gap:12px;margin-bottom:50px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line-strong);padding-bottom:20px;
+}
+.como-ajudar .tab-btn{
+  padding:10px 22px;border-radius:999px;
+  background:transparent;border:1px solid var(--line-strong);
+  font-family:'Manrope',sans-serif;font-weight:500;font-size:13.5px;
+  color:var(--ink-soft);cursor:pointer;transition:all .3s ease;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.como-ajudar .tab-btn:hover{border-color:var(--ink);color:var(--ink)}
+.como-ajudar .tab-btn.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.como-ajudar .tab-btn .count{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  background:rgba(217,122,31,.2);color:var(--amber);
+  padding:2px 8px;border-radius:999px;
+}
+.como-ajudar .tab-btn.active .count{background:rgba(250,246,236,.15);color:var(--amber-soft)}
+
+.como-ajudar .projects-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.como-ajudar .project{
+  grid-column:span 6;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:34px;
+  position:relative;
+  transition:all .4s cubic-bezier(.2,.8,.2,1);
+  display:flex;flex-direction:column;
+}
+.como-ajudar .project.hidden{display:none}
+.como-ajudar .project:hover{
+  transform:translateY(-4px);
+  border-color:var(--ink);
+  box-shadow:0 30px 60px -25px rgba(11,26,46,.25);
+}
+.como-ajudar .project.featured{grid-column:span 12;display:grid;grid-template-columns:1.1fr 1fr;gap:44px;padding:0;overflow:hidden}
+.como-ajudar .project.featured .project-image{
+  aspect-ratio:auto;min-height:100%;
+  background:linear-gradient(145deg,#2a4a7a,#0b1a2e);
+  position:relative;
+}
+.como-ajudar .project.featured .project-body{padding:44px}
+.como-ajudar .project-image{
+  aspect-ratio:16/10;border-radius:4px;margin-bottom:26px;
+  background:linear-gradient(145deg,#3a5a3b,#1a2a1b);
+  position:relative;overflow:hidden;
+}
+.como-ajudar .project-image::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(242,178,103,.3), transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+.como-ajudar .project-tag{
+  position:absolute;top:16px;left:16px;
+  background:var(--cream);color:var(--ink);
+  padding:6px 14px;border-radius:999px;
+  font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  z-index:2;
+}
+.como-ajudar .project-tag.fia{background:var(--amber);color:var(--ink)}
+.como-ajudar .project-tag.rouanet{background:var(--clay);color:var(--cream)}
+.como-ajudar .project-tag.patrocinio{background:var(--moss);color:var(--cream)}
+
+.como-ajudar .project-mechanism{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--clay);text-transform:uppercase;margin-bottom:12px}
+.como-ajudar .project h4{font-size:30px;line-height:1.05;font-weight:400;letter-spacing:-0.02em;margin-bottom:14px}
+.como-ajudar .project.featured h4{font-size:44px}
+.como-ajudar .project p.project-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:24px;flex:1}
+
+.como-ajudar .project-meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;
+  padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  margin-bottom:22px;
+}
+.como-ajudar .meta-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:3px;opacity:.7}
+.como-ajudar .meta-value{font-family:'Fraunces',serif;font-size:18px;font-weight:500;letter-spacing:-0.01em}
+
+.como-ajudar .project-progress{margin-bottom:22px}
+.como-ajudar .progress-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-size:13px}
+.como-ajudar .progress-head .captado{font-family:'Fraunces',serif;font-size:28px;font-weight:400;color:var(--ink);letter-spacing:-0.02em}
+.como-ajudar .progress-head .meta{color:var(--ink-soft);font-size:13px}
+.como-ajudar .progress-bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;position:relative}
+.como-ajudar .progress-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--clay));border-radius:999px;position:relative}
+.como-ajudar .progress-fill::after{
+  content:"";position:absolute;right:0;top:-3px;bottom:-3px;width:12px;
+  background:var(--ink);border-radius:50%;
+}
+.como-ajudar .progress-percent{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);
+  margin-top:8px;display:flex;justify-content:space-between;
+}
+
+.como-ajudar .project-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.como-ajudar .btn-s{
+  padding:12px 22px;border-radius:999px;font-size:12.5px;font-weight:600;
+  letter-spacing:.02em;transition:all .3s ease;display:inline-flex;align-items:center;gap:8px;
+}
+.como-ajudar .btn-s.solid{background:var(--ink);color:var(--cream)}
+.como-ajudar .btn-s.solid:hover{background:var(--amber);color:var(--ink)}
+.como-ajudar .btn-s.outline{border:1px solid var(--ink);color:var(--ink);background:transparent}
+.como-ajudar .btn-s.outline:hover{background:var(--ink);color:var(--cream)}
+
+.como-ajudar .funders{display:flex;align-items:center;gap:14px;margin-top:18px;font-size:12px;color:var(--ink-soft);flex-wrap:wrap}
+.como-ajudar .funders-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.como-ajudar .funders-names{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink)}
+
+@media (max-width:960px){
+  .como-ajudar .project,
+  .como-ajudar .project.featured{grid-column:span 12}
+  .como-ajudar .project.featured{grid-template-columns:1fr}
+  .como-ajudar .project.featured .project-image{aspect-ratio:16/10;min-height:auto}
+  .como-ajudar .project.featured h4{font-size:32px}
+}
+
+/* ============ OUTRAS FORMAS ============ */
+.como-ajudar .other-ways{
+  background:var(--ink);color:var(--cream);
+  border-radius:8px;padding:80px 60px;
+  position:relative;overflow:hidden;
+}
+.como-ajudar .other-ways::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(217,122,31,.22), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;pointer-events:none;
+}
+.como-ajudar .other-ways > *{position:relative;z-index:1}
+.como-ajudar .other-ways h3{color:var(--cream);font-size:52px;font-weight:400;line-height:1.05;max-width:700px;margin-bottom:22px;letter-spacing:-0.025em}
+.como-ajudar .other-ways h3 em{color:var(--amber-soft);font-style:italic}
+.como-ajudar .other-ways .lead{color:rgba(250,246,236,.75);font-size:17px;max-width:600px;margin-bottom:60px;line-height:1.6}
+
+.como-ajudar .ways-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:60px}
+.como-ajudar .way{
+  border:1px solid rgba(250,246,236,.16);
+  padding:30px;border-radius:4px;
+  transition:all .35s ease;position:relative;
+  background:rgba(250,246,236,.02);
+}
+.como-ajudar .way:hover{background:rgba(217,122,31,.1);border-color:var(--amber)}
+.como-ajudar .way-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--amber-soft);letter-spacing:.2em;margin-bottom:18px;
+}
+.como-ajudar .way h5{color:var(--cream);font-size:22px;font-weight:500;line-height:1.15;margin-bottom:10px}
+.como-ajudar .way p{color:rgba(250,246,236,.7);font-size:13.5px;line-height:1.55}
+
+.como-ajudar .contact-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:rgba(250,246,236,.16);
+  border:1px solid rgba(250,246,236,.16);
+}
+.como-ajudar .contact-block{
+  background:var(--ink);padding:26px 30px;
+  display:flex;flex-direction:column;gap:4px;
+  transition:background .3s ease;
+}
+.como-ajudar .contact-block:hover{background:rgba(217,122,31,.12)}
+.como-ajudar .contact-block .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--amber-soft);text-transform:uppercase}
+.como-ajudar .contact-block .val{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--cream);letter-spacing:-0.01em}
+
+@media (max-width:860px){
+  .como-ajudar .ways-grid,
+  .como-ajudar .contact-strip{grid-template-columns:1fr}
+  .como-ajudar .other-ways{padding:48px 28px}
+  .como-ajudar .other-ways h3{font-size:36px}
+}
+
+/* ============ EM EXECUÇÃO ============ */
+.como-ajudar .execution-row{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.como-ajudar .exec-card{
+  grid-column:span 4;
+  background:var(--cream);
+  border:1px solid var(--line);border-radius:4px;
+  padding:28px;
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;transition:all .35s ease;
+}
+.como-ajudar .exec-card:hover{border-color:var(--moss);transform:translateY(-3px)}
+.como-ajudar .exec-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+  color:var(--moss);text-transform:uppercase;font-weight:600;
+}
+.como-ajudar .exec-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--moss);animation:ca-pulse 2s ease-in-out infinite}
+@keyframes ca-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.como-ajudar .exec-card h5{font-size:24px;font-weight:400;line-height:1.1;letter-spacing:-0.015em;margin-bottom:4px}
+.como-ajudar .exec-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.como-ajudar .exec-card .exec-stats{
+  margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;
+}
+.como-ajudar .exec-stats > div{flex:1}
+.como-ajudar .exec-stats .meta-label{margin-bottom:2px}
+.como-ajudar .exec-stats .meta-value{font-size:15px}
+
+@media (max-width:960px){.como-ajudar .exec-card{grid-column:span 12}}
+
+/* ============ CTA FINAL ============ */
+.como-ajudar .final-cta{
+  padding:140px 0;text-align:center;position:relative;
+  background:var(--cream);
+  border-top:1px solid var(--line);
+}
+.como-ajudar .final-cta h2{
+  font-size:clamp(48px,7vw,110px);
+  font-weight:300;line-height:.95;letter-spacing:-0.035em;
+  margin-bottom:30px;
+}
+.como-ajudar .final-cta h2 em{font-style:italic;color:var(--amber);font-weight:400}
+.como-ajudar .final-cta p{font-size:17px;color:var(--ink-soft);max-width:560px;margin:0 auto 46px;line-height:1.6}
+.como-ajudar .final-cta .btn-primary{font-size:15px;padding:22px 40px}
+
+@media (max-width:900px){
+  .como-ajudar .sec-head{grid-template-columns:1fr;gap:18px}
+  .como-ajudar section{padding:80px 0}
+}

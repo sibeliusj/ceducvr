@@ -23,7 +23,7 @@ export const postsHome: PostPreview[] = [
     data: "9 Junho",
     resumo:
       "Você conhece o CEDUCVR? Confira a matéria abaixo e descubra como os nossos projetos transformam vidas e criam oportunidades para os jovens!!",
-    imagem: "/images/blog/blog1.jpg",
+    imagem: "/images/blog1.jpg",
   },
   {
     slug: "projeto-museu-para-juventude-1",
@@ -31,7 +31,7 @@ export const postsHome: PostPreview[] = [
     autor: "Administrador Sistema",
     data: "15 Maio",
     resumo: "Formação cultural, audiovisual e protagonismo juvenil",
-    imagem: "/images/blog/blog2.jpg",
+    imagem: "/images/blog2.jpg",
   },
   {
     slug: "trabalho-sobre-economia-solidaria-e-destaque-no-i-caces-com-participacao-do-ceducvr",
@@ -41,7 +41,7 @@ export const postsHome: PostPreview[] = [
     data: "8 Maio",
     resumo:
       "O artigo intitulado 'Desafios e Perspectivas na Gestão de Empreendimentos de Economia Solidária na RMBH: Um Estudo sobre Práticas Gerenciais e...",
-    imagem: "/images/blog/blog3.jpg",
+    imagem: "/images/blog3.jpg",
   },
   {
     slug: "metodologia-isonoma-do-ceducvr-conquista-pela-segunda-vez-certificacao-no-12o-premio-transforma",
@@ -51,7 +51,7 @@ export const postsHome: PostPreview[] = [
     data: "8 Maio",
     resumo:
       "A metodologia ISONOMA, desenvolvida pelo CEDUC Virgilio Resi, foi reconhecida pela 2ª vez com a certificação na 12ª edição do Prêmio...",
-    imagem: "/images/blog/blog1.jpg",
+    imagem: "/images/blog1.jpg",
   },
   {
     slug: "ceduc-virgilio-resi-apoia-o-programa-trabalho-seguro-do-trt-mg-e-agradece-pela-acao-educativa",
@@ -61,7 +61,7 @@ export const postsHome: PostPreview[] = [
     data: "8 Maio",
     resumo:
       "No dia 4 de abril de 2022, o CEDUCVR, teve a honra de receber o desembargador Marcelo Pertence, gestor regional do Programa Trabalho Seguro do...",
-    imagem: "/images/blog/blog2.jpg",
+    imagem: "/images/blog2.jpg",
   },
   {
     slug: "projeto-jovens-protagonistas-promove-inclusao-de-mulheres-no-mercado-de-trabalho",
@@ -71,6 +71,6 @@ export const postsHome: PostPreview[] = [
     data: "8 Maio",
     resumo:
       "O Projeto Jovens Protagonistas está com inscrições abertas até o dia 6 de agosto de 2021, oferecendo uma oportunidade única para jovens mulheres...",
-    imagem: "/images/blog/blog3.jpg",
+    imagem: "/images/blog3.jpg",
   },
 ];
