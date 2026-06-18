@@ -48,10 +48,24 @@ Os planos detalhados estão no repositório PHP original (`site-ceduc-vr/docs/`)
 
 ## Status
 
-- [x] Fase 0 — Segurança e dump (documentado)
-- [x] Fase 1 — Fundação do projeto *(em andamento)*
-- [ ] Fase 2 — Banco MySQL → Supabase
-- [ ] Fase 3 — Site público em React
-- [ ] Fase 4 — Formulários + e-mail serverless
+- [x] Fase 0 — Segurança e dump (documentado; rotação de secrets pendente do cliente)
+- [x] Fase 1 — Fundação do projeto
+- [ ] Fase 2 — Banco MySQL → Supabase *(adiada — conteúdo hardcoded por ora)*
+- [x] Fase 3 — Site público em React (todas as páginas + organograma)
+- [x] Fase 4 — Formulários + e-mail serverless *(código pronto; liga ao configurar env vars)*
 - [ ] Fase 5 — Admin / CMS
 - [ ] Fase 6 — Cutover e go-live
+
+### Configurar os formulários (Fase 4)
+
+Os endpoints `/api/forms/*` funcionam com **degradação graciosa**: sem credenciais,
+respondem com mensagem amigável e (se Supabase estiver configurado) gravam a submissão.
+Para o envio de e-mail real, configure na Vercel (ou `.env.local`):
+
+- `TURNSTILE_SECRET_KEY` + `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — anti-spam
+- `AZURE_TENANT_ID` / `AZURE_CLIENT_ID` / `AZURE_CLIENT_SECRET` / `AZURE_SENDER_EMAIL` — Microsoft Graph
+- `FORM_RECIPIENTS` — destinatários (separados por vírgula)
+- `SUPABASE_SERVICE_ROLE_KEY` — para gravar histórico em `form_submissions`
+  (aplicar `supabase/migrations/0001_form_submissions.sql`)
+
+> ⚠️ Os secrets do site PHP estão expostos no Git e devem ser **rotacionados** antes de usar.
