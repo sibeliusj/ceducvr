@@ -1,0 +1,39 @@
+/*
+ * overrides.css — rede de segurança para o WOW.js no fluxo do Next (SPA).
+ *
+ * Problema: o template define `.wow { opacity: 0.01 }` e só revela o elemento
+ * quando o WOW.js adiciona `.animated`. Em navegação client-side do Next, o
+ * all.js pode não re-inicializar a tempo, deixando a página "apagada".
+ *
+ * Solução: quando o <html> NÃO tem a classe `wow-ready` (setada pelo nosso
+ * inicializador assim que o WOW roda), um fallback revela os .wow após um
+ * pequeno atraso — garantindo que o conteúdo NUNCA fique invisível, mesmo se
+ * a animação falhar. Quando o JS funciona, ele revela antes e a animação roda
+ * normalmente (paridade visual preservada).
+ *
+ * Carregado por ÚLTIMO no layout para ter precedência.
+ */
+
+/* Fallback: sem JS de animação pronto, revela suavemente os elementos. */
+html:not(.wow-ready) .wow,
+html:not(.wow-ready) .wow-p,
+html:not(.wow-ready) .wow-menubar {
+  animation: cvr-wow-fallback 0.01s linear 1.2s forwards;
+}
+
+@keyframes cvr-wow-fallback {
+  to {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Rede de segurança final: se por qualquer motivo um .wow continuar oculto
+   após a carga, garante visibilidade total (sem animação). Vale para SSR
+   antes da hidratação e para navegação interna. */
+.wow.cvr-shown,
+.wow-p.cvr-shown,
+.wow-menubar.cvr-shown {
+  opacity: 1 !important;
+  transform: none !important;
+}

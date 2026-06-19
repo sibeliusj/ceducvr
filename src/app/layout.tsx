@@ -48,8 +48,11 @@ export default function RootLayout({
         <link rel="stylesheet" href="/css/contrate-aprendiz-form.css" />
         <link rel="stylesheet" href="/css/contact-form-styles.css" />
         <link rel="stylesheet" href="/css/como-ajudar.css" />
+        {/* Por último: overrides que garantem que animações nunca deixem
+            o conteúdo invisível em navegação client-side (ver TemplateScripts). */}
+        <link rel="stylesheet" href="/css/overrides.css" />
       </head>
-      <body>
+      <body className="appear-animate">
         {children}
 
         {/* Google Analytics 4 */}

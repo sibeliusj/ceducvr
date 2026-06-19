@@ -13,7 +13,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="appear-animate">
+    <>
       {/* Page Loader */}
       <div className="page-loader">
         <div className="loader">Loading...</div>
@@ -32,6 +32,6 @@ export default function PublicLayout({
       </div>
 
       <TemplateScripts />
-    </div>
+    </>
   );
 }

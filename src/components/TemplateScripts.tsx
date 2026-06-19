@@ -1,23 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
- * Carrega os scripts JS do template Rhythm (jQuery + plugins + all.js) e
- * dispara a inicialização DEPOIS da montagem do React.
+ * Carrega os scripts do template (jQuery + plugins + all.js) e os RE-INICIALIZA
+ * a cada navegação client-side do Next.
  *
- * Por que não usar next/script com beforeInteractive/afterInteractive:
- * o all.js inteiro roda dentro de `$(window).on("load", ...)`. No fluxo do
- * Next (App Router + hidratação), esse evento já disparou quando o script
- * executa, então o handler nunca roda — o page-loader trava e nada inicializa.
+ * Por que: o all.js roda dentro de `$(window).on("load")`, que dispara uma vez
+ * só. Em SPA (App Router), trocar de página NÃO re-roda esse handler, então o
+ * WOW.js não revela os `.wow` da nova rota (template define `.wow{opacity:.01}`)
+ * e a página fica "apagada". Aqui, a cada mudança de pathname, re-disparamos a
+ * inicialização (WOW + carrosséis) e, como rede de segurança, marcamos como
+ * visíveis quaisquer `.wow` que não tenham animado.
  *
- * Solução: carregar os scripts em ORDEM (cada um só após o anterior), e ao
- * final disparar manualmente um evento `load` na window. Como o all.js
- * registra o listener antes (ele é o último script, mas registra no parse),
- * o dispatch manual aciona a inicialização do template de forma confiável.
- *
- * Estratégia transitória da Fase 3 — refino futuro: trocar plugin a plugin
- * por equivalentes React (Swiper, Framer Motion, lightbox) e remover isto.
+ * Estratégia transitória da Fase 3 — refino futuro: trocar plugin a plugin por
+ * equivalentes React e remover este loader.
  */
 const SCRIPTS = [
   "/js/jquery.min.js",
@@ -45,7 +43,6 @@ const SCRIPTS = [
 
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // evita recarregar em navegações client-side
     if (document.querySelector(`script[data-tpl="${src}"]`)) {
       resolve();
       return;
@@ -60,29 +57,107 @@ function loadScript(src: string): Promise<void> {
   });
 }
 
-export default function TemplateScripts() {
-  useEffect(() => {
-    let cancelled = false;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare global {
+  interface Window {
+    jQuery?: any;
+    WOW?: any;
+  }
+}
 
+/**
+ * Revela elementos de entrada e re-inicializa as animações/plugins do template
+ * para a rota atual. Idempotente: pode ser chamada a cada navegação.
+ */
+function initTemplate() {
+  const w = window as any;
+  try {
+    // (Re)inicializa o WOW.js para os .wow presentes na página atual.
+    if (w.WOW) {
+      const wow = new w.WOW({
+        boxClass: "wow",
+        animateClass: "animated",
+        offset: 100,
+        mobile: false,
+        live: false, // re-instanciamos a cada rota; não precisa de observer global
+      });
+      wow.init();
+      // Re-sincroniza no caso de já estarem no viewport (sync nem sempre é público).
+      if (typeof wow.sync === "function") wow.sync();
+    }
+
+    // (Re)inicializa carrosséis Owl que ainda não foram inicializados.
+    const $ = w.jQuery;
+    if ($ && $.fn && $.fn.owlCarousel) {
+      $(".owl-carousel").each(function (this: any) {
+        const $c = $(this);
+        if (!$c.hasClass("owl-loaded")) {
+          // Defaults seguros; o all.js já configura os principais no load inicial.
+          $c.owlCarousel({ items: 1, loop: true, nav: false, dots: true, autoplay: true });
+        }
+      });
+    }
+
+    document.documentElement.classList.add("wow-ready");
+
+    // Rede de segurança: após um curto período, garante que nenhum .wow ficou
+    // invisível (ex.: elementos abaixo da dobra sem scroll, ou animação que não
+    // disparou). Marca-os como visíveis sem quebrar os que já animaram.
+    window.setTimeout(() => {
+      document.querySelectorAll<HTMLElement>(".wow, .wow-p").forEach((el) => {
+        const op = parseFloat(getComputedStyle(el).opacity || "1");
+        if (op < 0.5 && !el.classList.contains("animated")) {
+          el.classList.add("cvr-shown");
+        }
+      });
+    }, 1500);
+  } catch (err) {
+    console.error("[TemplateScripts] initTemplate:", err);
+  }
+}
+
+export default function TemplateScripts() {
+  const pathname = usePathname();
+
+  // Carrega os scripts uma única vez, depois inicializa.
+  useEffect(() => {
+    let cancelado = false;
     (async () => {
       try {
         for (const src of SCRIPTS) {
-          if (cancelled) return;
+          if (cancelado) return;
           await loadScript(src);
         }
-        // O all.js registrou $(window).on("load", init). Como a janela já
-        // carregou, disparamos o evento manualmente para acionar a init.
+        // Primeira carga: o all.js escuta window.load; já passou, então disparamos.
         window.dispatchEvent(new Event("load"));
+        initTemplate();
       } catch (err) {
-        // não quebra a página se algum plugin falhar
         console.error("[TemplateScripts]", err);
+        // Mesmo se algum script falhar, não deixa a página invisível.
+        document.documentElement.classList.add("wow-ready");
       }
     })();
-
     return () => {
-      cancelled = true;
+      cancelado = true;
     };
   }, []);
+
+  // A cada navegação client-side, re-inicializa plugins e GARANTE visibilidade.
+  // O WOW.js mantém elementos fora do viewport invisíveis aguardando scroll —
+  // o que, em navegação SPA (sem reload), deixaria a nova página "apagada".
+  // Por isso, ao trocar de rota, revelamos imediatamente todos os .wow (a
+  // animação de entrada fica garantida no primeiro load de cada página).
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      // Reinit de carrosséis/typed da nova rota.
+      initTemplate();
+      // Revela todos os elementos de entrada da nova página.
+      document
+        .querySelectorAll<HTMLElement>(".wow, .wow-p")
+        .forEach((el) => el.classList.add("cvr-shown"));
+    }, 60);
+    return () => window.clearTimeout(t);
+  }, [pathname]);
 
   return null;
 }
